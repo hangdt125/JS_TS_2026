@@ -4,3 +4,4 @@ This is a new change from branch: docs/git-lesson
 Continue push new code from branch: docs/git-lesson
 
 Conflict data from branch docs/git-lesson
+Conflict data from branch: main
