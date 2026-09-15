@@ -92,7 +92,6 @@ class Library {
     const matched = this.findByTitle(title)
     if (matched.length === 0) { throw Error('Không có cuốn sách bạn tìm kiếm') }
 
-
     const available = matched.find(item => item.available === false)
 
     if (!available) { throw Error('Không có cuốn sách nào đã được mượn') }

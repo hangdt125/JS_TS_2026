@@ -46,7 +46,6 @@ class TestReporter {
         let failed = 0;
         let skipped = 0;
         let duration = 0;
-
         let passRate = ''
         let avgDuration = ''
         let slowestNum = 0
@@ -78,7 +77,6 @@ class TestReporter {
         avgDuration = `${(duration / total).toFixed(2)}s`
         let slowest = `${testName} (${slowestNum.toFixed(2)}s)`
         return {
-
             total, passed, failed, skipped, passRate, avgDuration, slowest
         }
     }
@@ -126,10 +124,8 @@ class TestReporter {
                 }
                 else if (item.status === 'failed') { existedTag.failed++ }
                 else { existedTag.skipped++ }
-
             }
         }
-
         return reports
     }
 
@@ -154,8 +150,6 @@ class TestReporter {
 
         if (!failedStr) { return sumStr } else { return [sumStr, failedStr].join("\n") }
     }
-
-
 }
 
 
