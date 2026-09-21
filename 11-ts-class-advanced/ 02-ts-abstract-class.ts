@@ -18,7 +18,7 @@ abstract class Vehicle {
 }
 
 //KO THỂ KHỞI TẠO INSTANCE HAY OBJECT TỪ ABSTRACT CLASS
-// const v = new Vehicle();
+const v = new Vehicle();
 
 class ElectricCar extends Vehicle {
   constructor(brand: string, year: number) {
