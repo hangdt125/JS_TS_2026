@@ -16,7 +16,7 @@ class MemoryLogger implements ILogger {
 abstract class PaymentGateway {
     constructor(protected providerName: string) { }
 
-    name(): string {
+    get name(): string {
         return this.providerName
     }
 
@@ -110,15 +110,15 @@ class PaymentProcessor {
 
         try {
             const result = matched.pay(request);
-            logger.log(`[PAID] ${request.id} by ${result.provider}`)
+            this.logger.log(`[PAID] ${request.id} by ${result.provider}`)
             return result
         }
         catch (error) {
             if (error instanceof Error) {
-                logger.log(`[FAILED] ${request.id}: ${error.message}`)
+                this.logger.log(`[FAILED] ${request.id}: ${error.message}`)
                 return {
                     id: request.id,
-                    provider: "",
+                    provider: matched.name,
                     status: "failed",
                     fee: 0,
                     totalCharged: 0,
@@ -127,7 +127,7 @@ class PaymentProcessor {
             }
 
             else {
-                logger.log(`[FAILED] ${request.id}: Lỗi không xác định`)
+                this.logger.log(`[FAILED] ${request.id}: Lỗi không xác định`)
                 return {
                     id: request.id,
                     provider: "",
@@ -160,8 +160,8 @@ class PaymentProcessor {
 
     getFailedMessages(results: IPaymentResult[]): string[] {
         const fail = results.filter(item => item.status === 'failed')
-        if (fail.length === 0) { console.log('Không có payment fail') }
-        const failMsg = fail.map(item => `id: ${item.id}, message: ${item.message}`)
+        //if (fail.length === 0) { console.log('Không có payment fail') }
+        const failMsg = fail.map(item => `${item.id}: ${item.message}`)
         return failMsg
     }
 }
