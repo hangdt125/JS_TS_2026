@@ -77,13 +77,13 @@ function updateField<T, K extends keyof T>(item: T, key: K, value: T[K]): T {
 
 function sortBy<T, K extends keyof T>(items: T[], key: K, direction: SortDirection = 'asc'): T[] {
 
-    const multifier = direction === 'asc' ? 1 : -1
+    const multiplier = direction === 'asc' ? 1 : -1
     return [...items].sort((a, b) => {
         const valueA = a[key]
         const valueB = b[key]
 
-        if (typeof valueA === 'string' && typeof valueB === 'string') { return valueA.localeCompare(valueB) * multifier }
-        if (typeof valueA === 'number' && typeof valueB === 'number') { return (valueA - valueB) * multifier }
+        if (typeof valueA === 'string' && typeof valueB === 'string') { return valueA.localeCompare(valueB) * multiplier }
+        if (typeof valueA === 'number' && typeof valueB === 'number') { return (valueA - valueB) * multiplier }
 
         throw new TypeError(`${String(key)} must contains type of string or number`)
     })
